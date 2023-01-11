@@ -1,0 +1,52 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block additional_styles %}
+
+{% endblock additional_styles %}
+
+
+{% block content %}
+
+
+<div class="card mb-3" style="max-width: 540px; margin-top: 50px; margin-left: 100px; border: solid black;">
+  {% for product in products %}
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{product.image.url}}" class="img-fluid rounded-start" alt="" >
+      </div>
+      <input hidden type="text" name='product_id' id="product_id" value='{{product.product_id}}'>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h1 class="card-title">{{product.product_name}}</h1>
+          <h3 class="card-text">Price : {{product.price}}</h3>
+          <h3 class="card-text">Strap color : {{product.strap_color}}</h3>
+          <h3 class="card-text"> Highlights : {{product.highlights}}</h3>  
+          <button   class="btn btn-warning"> <a style="color: black;" href="/update/{{product.product_id}}/">Update</a></button>
+          <button   class="btn btn-danger"><a style="color: black;" href="/delete/{{product.product_id}}/">Delete</a></button>
+        
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    
+  </div>
+
+
+  {% endblock %}
+  
+{% block  scripts %}
+
+
+<script>
+  function myFunction() {
+    console.log("fuction called")
+    alert("I am an alert box!");
+    var product_id = $("#product_id").val()
+    alert(product_id)
+  }
+   
+  </script>
+
+{% endblock scripts %}
