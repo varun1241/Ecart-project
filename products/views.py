@@ -23,7 +23,9 @@ class HomePage(APIView):
             request.session.cart={}
       
         product=Product.objects.all()
-      
+        productnmae=Product.objects.all()[:5]
+        print(productnmae)
+
 
         return render(request,template_name='home.html',context={"data":product})
     
@@ -139,11 +141,40 @@ class ProductView(APIView):
         return render (request,'productview.html',{'products' : products})
 
 
-class TaskCreateView(CreateView):
-    model = Product
-    form_class = ProductForm
-    template_name = 'product_form.html'
-    success_url = reverse_lazy('home')
+class TaskCreateView(APIView):
+
+    def get(self,request):
+        return render (request,'productadd.html')
+
+
+    def post(self,request):
+        tutorial_data = request.data
+        print(tutorial_data)
+        product_name=request.POST['product_name']
+        print(product_name)
+        pro_price=request.POST['pro_price']
+        print(pro_price)
+        strap_color=request.POST['strap_color']
+        print(strap_color)
+        highlights=request.POST['highlights']
+        print(highlights)
+        productimage=request.FILES['productimage']
+        print(productimage)
+        
+        product=Product(product_name=product_name,price=pro_price,strap_color=strap_color,highlights=highlights,image=productimage,status=True)
+        product.save()
+        return redirect('home')
+
+        
+       
+        # product.save()
+        # productimagetwo=ProductImage.objects.create(product=product,image=productimage)
+
+        # productimagetwo.save()
+    # model = Product
+    # form_class = ProductForm
+    # template_name = 'product_form.html'
+    # success_url = reverse_lazy('home')
 
 class TaskUpdateView(UpdateView):
     model = Product

@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'products',
     'rest_framework',
+      'social_django',
+      'college',
     
 ]
 
@@ -65,6 +67,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -72,6 +76,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mycart.wsgi.application'
 
+AUTHENTICATION_BACKENDS = (
+
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -130,3 +140,16 @@ MEDIA_URL = '/image/download/'
   
 # Path where media is stored  
 MEDIA_ROOT =BASE_DIR
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'AIzaSyAOw0AVPW8jn-J1ekjOOj_ibU0428GA08A'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = str(os.getenv('AIzaSyAOw0AVPW8jn-J1ekjOOj_ibU0428GA08A'))
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = str(os.getenv('OCSPX-KuliVYVyGLwsJ7Qlb1i8PYraFuKz'))
+
+# SITE_ID = 2
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/'
+ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'

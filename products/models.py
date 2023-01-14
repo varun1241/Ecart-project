@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.db.models.signals import pre_save
+from django.dispatch import receiver  
 # Create your models here.
 class Product(models.Model):
 
@@ -20,3 +22,27 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+
+
+
+
+def task_handler(sender,instance,**kwargs):
+
+    print("you are in")
+    print(instance)
+
+
+pre_save.connect(task_handler, sender=Product)
+
+
+
+
+class Student(models.Model):
+
+    name=models.CharField(max_length=10)
+    age=models.ImageField()
+    address=models.TextField()
+
+
+    def __str__(self):
+        return self.name
