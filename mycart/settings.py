@@ -94,6 +94,30 @@ DATABASES = {
 }
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+               'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES':(
+                'rest_framework.permissions.IsAuthenticated',
+    ),
+
+}
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'mssql',
+#             'NAME': 'intranet',
+#             # 'USER': 'user@myserver',
+#             # 'PASSWORD': 'password',
+#             'HOST': 'LAPTOP-TCFOBFNA\SQLEXPRESS',
+#             'PORT': '3306',
+
+#             'OPTIONS': {
+#                 'driver': 'ODBC Driver 17 for SQL Server',
+#             },
+#         },
+#     }
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
