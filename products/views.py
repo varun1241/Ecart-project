@@ -166,17 +166,10 @@ class TaskCreateView(APIView):
         return redirect('home')
 
         
-       
-        # product.save()
-        # productimagetwo=ProductImage.objects.create(product=product,image=productimage)
-
-        # productimagetwo.save()
-    # model = Product
-    # form_class = ProductForm
-    # template_name = 'product_form.html'
-    # success_url = reverse_lazy('home')
-
-class TaskUpdateView(UpdateView):
+     
+class TaskUpdateView(APIView):
+    def get(self,request):
+        return render (request,'productadd.html')
     model = Product
     form_class = ProductForm
     template_name = 'updateproduct.html'
@@ -188,3 +181,5 @@ class ProductDeleteView(DeleteView):
     success_url = reverse_lazy('home')
      
   
+
+
